@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class BasicString {
     public static void main(String args[]){
       Scanner sc =new Scanner(System.in);
@@ -17,7 +18,7 @@ public class BasicString {
     }
     System.out.println("Total Characters is: "+Count);
 
-    //Count Words
+    //Count Words(Space Based)
     int count=0;
     boolean inWord = false;
     for(int i=0; i<str.length(); i++){
@@ -30,9 +31,75 @@ public class BasicString {
         }
     }
     System.out.println("Total Words: "+count);
+
+    //Reverse String
+
+    System.out.println("Reversing String");
+    char reversed[]= new char[str.length()];
+    for(int i=0; i<str.length(); i++){
+        reversed[i]= str.charAt(str.length()-1-i);
+    }
+    for(int i=0; i<reversed.length; i++){
+        System.out.println("Reversed Array is "+reversed[i]);
+        
+    }
+    System.out.println();
     
 
-}
+    //Reversed Words
+    System.out.println("Reverse Words from Sentence");
+    int start=0;
+    for(int i=0; i<=str.length(); i++){
+        if(i==str.length() || str.charAt(i)==' '){
+            for(int j=i-1;j>=start; j--){
+                System.out.println(str.charAt(j));
+            }
+            System.out.print(" ");
+            start=i+1;
+        }
+    }
+    System.out.println();
+
+
+    //Palindrome check(Ignore space and Upper Case)
+    char cleaned[]= new char[str.length()];
+    int idx=0;
+    for(int i=0; i<str.length(); i++){
+        char ch=str.charAt(i);
+        if(ch>='A' && ch<='Z'){
+            cleaned[idx++]= (char)(ch +32);
+        } else if(ch>='a' && ch<='z'){
+            cleaned[idx++]=ch;
+
+        }
+
+    }
+    boolean palindrome = true;
+        for (int i = 0; i < idx / 2; i++) {
+            if (cleaned[i] != cleaned[idx - 1 - i]) {
+                palindrome = false;
+                break;
+            }
+        }
+        if (palindrome) System.out.println("The string is a palindrome.");
+        else System.out.println("The string is not a palindrome.");
+
+     // 8️⃣ Count vowels & consonants
+        int vowels = 0, consonants = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') ch += 32; // convert to lowercase
+            if (ch >= 'a' && ch <= 'z') {
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') vowels++;
+                else consonants++;
+            }
+        }
+        System.out.println("Vowels: " + vowels + ", Consonants: " + consonants);
+
+        sc.close();
+        System.out.println("\n✅ Done! You can now use loops and arrays to solve LeetCode string problems without inbuilt methods.");
+    }
+
 }
 
 
